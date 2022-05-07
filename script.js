@@ -1,10 +1,10 @@
 // Assignment Code
 // array variables
 var generateBtn = document.querySelector("#generate");
-var lowercaseChar = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-var uppercaseChar = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-var numberChar = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-var specialChar = ["!", "@", "#", "$", "%", "^", "&", "*","(", ")", "_", "-", "+", "=", "{", "}", "[", "]", ";", ":", "'", "`", "~", "<", ">", ".", "?", "/", "|"]
+var lowercaseChar = "abcdefghijklmnopqrstuvwxyz";
+var uppercaseChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var numberChar = "0123456789";
+var specialChar = "!@#$%^&*()_-+={}[]:'`~<>.?/|";
 
 // declaration
 var passwordLength;
@@ -52,7 +52,7 @@ function determineSpecial(){
   }
 
 // random number generator
-function generatePassword(){
+ function generatePassword(){
     determinePassword();
     console.log(passwordLength);
     determineUppercase();
@@ -62,40 +62,37 @@ function generatePassword(){
     determineSpecial();
     console.log(specialCheck);
   
-  var characters = [];
-  var password = [];
+  var characters = lowercaseChar;
+  var password = "";
   if (uppercaseCheck && numberCheck && specialCheck){
-      //replace all += to use the push method for arrays in order to combine the arrays 
-    characters.concat(uppercaseChar, numberChar, specialChar);
+    characters += uppercaseChar + numberChar + specialChar;
   
   }else if (uppercaseCheck && numberCheck){
-    characters.concat(uppercaseChar, numberChar);
+    characters += uppercaseChar + numberChar;
   
   }else if (numberCheck && specialCheck){
-    characters.concat(numberChar, specialChar);
+    characters += numberChar + specialChar;
   
   }else if (uppercaseCheck && specialCheck){
-    characters.concat(uppercaseChar, specialChar);
+    characters += uppercaseChar + specialChar;
   
   }else if (uppercaseCheck){
-    characters.concat(uppercaseChar);
+    characters += uppercaseChar;
   
   }else if(numberCheck){
-    characters.concat(numberChar);
+    characters += numberChar;
   
   }else if (specialCheck){
-    characters.concat(specialChar);
+    characters += specialChar;
   
   }else{
     characters === lowercaseChar;
   }
-  console.log(characters)
+  
     for(var i = 0; i < passwordLength; i++){
-        // change the code so instead of getting random character we want to get random index of the array that we push into the pasword variable 
-      password.concat(characters[Math.floor(Math.random() * characters.length)]);
+      password += characters.charAt(Math.floor(Math.random() * characters.length));
     }
-    console.log(password.join(""))
-    return password.join("");
+    return password;
   }
 
   // wrtie password function
