@@ -33,25 +33,7 @@ function determinePassword () {
 
 //for users to see if they want uppercase
 function determineUppercase(){
-    uppercaseCheck = prompt("Do you want to include uppercase letters in your password? \n(Yes or No)");
-      uppercaseCheck = uppercaseCheck.toLowerCase();
-  
-      if (uppercaseCheck === null || uppercaseCheck === ""){
-        alert("Please answer Yes or No");
-        determineUppercase();
-  
-      }else if (uppercaseCheck === "yes" || uppercaseCheck ==="y"){
-        uppercaseCheck = true;
-        return uppercaseCheck;
-  
-      }else if (uppercaseCheck === "no" || uppercaseCheck ==="n"){
-        uppercaseCheck = false;
-        return uppercaseCheck;
-      
-      }else {
-        alert("Please answer Yes or No");
-        determineUppercase();
-      }
+    uppercaseCheck = confirm("Do you want to include uppercase letters in your password? \n(Yes or No)");
       return uppercaseCheck;
   }
 
@@ -59,49 +41,13 @@ function determineUppercase(){
 
 //for users to see if they want numbers
 function determineNumbers(){
-  numberCheck = prompt("Do you want to include numbers in your password? \n(Yes or No)");
-    numberCheck = numberCheck.toLowerCase();
-
-    if (numberCheck === null || numberCheck === ""){
-      alert("Please answer Yes or No");
-      determineNumbers();
-
-    }else if (numberCheck === "yes" || numberCheck ==="y"){
-      numberCheck = true;
-      return numberCheck;
-
-    }else if (numberCheck === "no" || numberCheck ==="n"){
-      numberCheck = false;
-      return numberCheck;
-    
-    }else {
-      alert("Please answer Yes or No");
-      determineNumbers();
-    }
+  numberCheck = confirm("Do you want to include numbers in your password? \n(Yes or No)");
     return numberCheck;
 }
 
 // function for special characters
 function determineSpecial(){
-    specialCheck = prompt("Do you want to include special characters in your password? \n(Yes or No)");
-      specialCheck = specialCheck.toLowerCase();
-  
-      if (specialCheck === null || specialCheck === ""){
-        alert("Please answer Yes or No");
-        determineSpecial();
-  
-      }else if (specialCheck === "yes" || specialCheck ==="y"){
-        specialCheck = true;
-        return specialCheck;
-  
-      }else if (specialCheck === "no" || specialCheck ==="n"){
-        specialCheck = false;
-        return specialCheck;
-      
-      }else {
-        alert("Please answer Yes or No");
-        determineSpecial();
-      }
+    specialCheck = confirm("Do you want to include special characters in your password? \n(Yes or No)");
       return specialCheck;
   }
 
@@ -116,9 +62,10 @@ function generatePassword(){
     determineSpecial();
     console.log(specialCheck);
   
-  var characters = lowercaseChar;
+  var characters = [];
   var password = "";
   if (uppercaseCheck && numberCheck && specialCheck){
+      //replace all += to use the push method for arrays in order to combine the arrays 
     characters += uppercaseChar + numberChar + specialChar;
   
   }else if (uppercaseCheck && numberCheck){
@@ -142,8 +89,8 @@ function generatePassword(){
   }else{
     characters === lowercaseChar;
   }
-  
     for(var i = 0; i < passwordLength; i++){
+        // change the code so instead of getting random character we want to get random index of the array that we push into the pasword variable 
       password += characters.charAt(Math.floor(Math.random() * characters.length));
     }
     return password;
