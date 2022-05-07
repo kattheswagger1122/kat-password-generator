@@ -31,7 +31,7 @@ function determinePassword () {
   return passwordLength;
 }
 
-//for users to see if they want upper or lower case
+//for users to see if they want uppercase
 function determineUppercase(){
     uppercaseCheck = prompt("Do you want to include uppercase letters in your password? \n(Yes or No)");
       uppercaseCheck = uppercaseCheck.toLowerCase();
@@ -54,6 +54,8 @@ function determineUppercase(){
       }
       return uppercaseCheck;
   }
+
+
 
 //for users to see if they want numbers
 function determineNumbers(){
@@ -79,6 +81,30 @@ function determineNumbers(){
     return numberCheck;
 }
 
+// function for special characters
+function determineSpecial(){
+    specialCheck = prompt("Do you want to include special characters in your password? \n(Yes or No)");
+      specialCheck = specialCheck.toLowerCase();
+  
+      if (specialCheck === null || specialCheck === ""){
+        alert("Please answer Yes or No");
+        determineSpecial();
+  
+      }else if (specialCheck === "yes" || specialCheck ==="y"){
+        specialCheck = true;
+        return specialCheck;
+  
+      }else if (specialCheck === "no" || specialCheck ==="n"){
+        specialCheck = false;
+        return specialCheck;
+      
+      }else {
+        alert("Please answer Yes or No");
+        determineSpecial();
+      }
+      return specialCheck;
+  }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
