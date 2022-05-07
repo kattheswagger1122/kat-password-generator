@@ -14,19 +14,19 @@ var specialCheck;
 
 // determine length of the password
 function determinePassword () {
-  passwordLength = prompt("Choose your own password length (between 8-30 characters): ");
+  passwordLength = prompt("Choose your own password length (between 8-128 characters): ");
 
   if (passwordLength<8){
-    alert("Password length must be a number between 8-30 characters");
+    alert("Password length must be a number between 8-128 characters");
     determinePassword();
-  }else if (passwordLength>30){
-    alert("Password length must be a number between 8-30 characters");
+  }else if (passwordLength>128){
+    alert("Password length must be a number between 8-128 characters");
     determinePassword();
   }else if (isNaN(passwordLength)){
-    alert("Password length must be a number between 8-30 characters");
+    alert("Password length must be a number between 8-128 characters");
     determinePassword();
   }else{
-  alert("Password length must be between 8-30 characters Try again");
+  alert("Password length must be between 8-128 characters Try again");
   }
   return passwordLength;
 }
@@ -63,37 +63,39 @@ function generatePassword(){
     console.log(specialCheck);
   
   var characters = [];
-  var password = "";
+  var password = [];
   if (uppercaseCheck && numberCheck && specialCheck){
       //replace all += to use the push method for arrays in order to combine the arrays 
-    characters += uppercaseChar + numberChar + specialChar;
+    characters.concat(uppercaseChar, numberChar, specialChar);
   
   }else if (uppercaseCheck && numberCheck){
-    characters += uppercaseChar + numberChar;
+    characters.concat(uppercaseChar, numberChar);
   
   }else if (numberCheck && specialCheck){
-    characters += numberChar + specialChar;
+    characters.concat(numberChar, specialChar);
   
   }else if (uppercaseCheck && specialCheck){
-    characters += uppercaseChar + specialChar;
+    characters.concat(uppercaseChar, specialChar);
   
   }else if (uppercaseCheck){
-    characters += uppercaseChar;
+    characters.concat(uppercaseChar);
   
   }else if(numberCheck){
-    characters += numberChar;
+    characters.concat(numberChar);
   
   }else if (specialCheck){
-    characters += specialChar;
+    characters.concat(specialChar);
   
   }else{
     characters === lowercaseChar;
   }
+  console.log(characters)
     for(var i = 0; i < passwordLength; i++){
         // change the code so instead of getting random character we want to get random index of the array that we push into the pasword variable 
-      password += characters.charAt(Math.floor(Math.random() * characters.length));
+      password.concat(characters[Math.floor(Math.random() * characters.length)]);
     }
-    return password;
+    console.log(password.join(""))
+    return password.join("");
   }
 
   // wrtie password function
